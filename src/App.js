@@ -1,24 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import starterTasks from './starterTasks';
+import TaskListComponent from './components/TaskListComponent';
+import { useState } from 'react';
+
 
 function App() {
+  const [tasks, setTasks] = useState(starterTasks);
+  function handleTaskChange(task){
+    console.log(starterTasks);
+    const updatedTasks = tasks.map((curr) => { if(task.id === curr.id ){
+      return {...curr , value : task.value};
+    }return curr;}
+  );
+
+  setTasks(updatedTasks );
+   
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <h1>TODOEY</h1>
+    {
+    tasks.map(task => <TaskListComponent task = {task} onClick = {(value) => {
+    
+      handleTaskChange(value);
+    }}/>)
+    }
+    </>
   );
 }
 
