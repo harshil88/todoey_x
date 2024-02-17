@@ -1,5 +1,10 @@
 const starterTasks = [
     {
+      'id' : 0,
+      'label' : "To Do This",
+      'value' : false
+    },
+    {
       'id' : 1,
       'label' : "To Do This",
       'value' : false
@@ -11,11 +16,6 @@ const starterTasks = [
     },
     {
       'id' : 3,
-      'label' : "To Do This",
-      'value' : false
-    },
-    {
-      'id' : 4,
       'label' : "To Do This",
       'value' : false
     }
