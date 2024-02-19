@@ -13,11 +13,6 @@ export default function AddTaskComponent(props) {
     }
   }
 
-  useEffect(() => {
-    inputText.current.addEventListener("ke", handleTextChange());
-    return inputText.current.removeEventListener("ke", handleTextChange());
-  }, []);
-
   function addTask() {
     props.handleTaskAdd(inputText.current.value);
     if (inputText.current.value === "") {

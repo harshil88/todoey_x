@@ -3,7 +3,6 @@ import starterTasks from "./starterTasks";
 import TaskListComponent from "./components/TaskListComponent";
 import { useState } from "react";
 import AddTaskComponent from "./components/AddTaskComponent";
-import styles from "./input.css";
 
 function App() {
   const [tasks, setTasks] = useState(starterTasks);

@@ -75,16 +75,21 @@ function CheckTaskComponent(props) {
   return (
     <div className="flex flex-row items-center">
       <input
-        className="mr-2"
+        className="mr-2 focus:to-black accent-black"
         type="checkbox"
         ref={checkBoxValue}
-        onClick={handleOnClick}
+        onClick={() => handleOnClick()}
         checked={props.task.value}
         id={props.task.id}
         name={props.task.id}
         value={props.task.value}
       />
-      <label className="grow" htmlFor={props.task.id}>
+      <label
+        className={`grow ${
+          props.task.value ? "text-gray-500 italic line-through" : undefined
+        }`}
+        htmlFor={props.task.id}
+      >
         {props.task.label}
       </label>
       <button
