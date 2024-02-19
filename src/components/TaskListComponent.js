@@ -1,4 +1,9 @@
-import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
+import {
+  CheckIcon,
+  Cross2Icon,
+  Pencil1Icon,
+  TrashIcon,
+} from "@radix-ui/react-icons";
 import { useRef, useState } from "react";
 
 export default function TaskListComponent(props) {
@@ -11,7 +16,7 @@ export default function TaskListComponent(props) {
   }
 
   return (
-    <div>
+    <div className="border my-2 py-3 mx-5 rounded-md px-4">
       {edit ? (
         <EditTaskComponent
           task={props.task}
@@ -32,18 +37,29 @@ export default function TaskListComponent(props) {
 
 function EditTaskComponent(props) {
   const editedTaskCheckRef = useRef(null);
-  console.log(props);
   return (
-    <div>
-      <input ref={editedTaskCheckRef} defaultValue={props.task.label} />
+    <div className="flex flex-row items-center">
+      <input
+        autoFocus
+        className="grow focus:outline-none text-gray-500 italic"
+        ref={editedTaskCheckRef}
+        defaultValue={props.task.label}
+      />
+
       <button
+        className="text-white font-semibold text-xs px-2 mr-4"
         onClick={() => {
           props.onSave(editedTaskCheckRef.current.value);
         }}
       >
-        Save
+        <CheckIcon color="black" />
       </button>
-      <button onClick={() => props.onCancel(props.task)}>Cancel</button>
+      <button
+        className="text-white font-semibold text-xs px-2 mr-4"
+        onClick={() => props.onCancel(props.task)}
+      >
+        <Cross2Icon color="black" />
+      </button>
     </div>
   );
 }
@@ -57,8 +73,9 @@ function CheckTaskComponent(props) {
   }
 
   return (
-    <div>
+    <div className="flex flex-row items-center">
       <input
+        className="mr-2"
         type="checkbox"
         ref={checkBoxValue}
         onClick={handleOnClick}
@@ -67,18 +84,20 @@ function CheckTaskComponent(props) {
         name={props.task.id}
         value={props.task.value}
       />
-      <label htmlFor={props.task.id}>
+      <label className="grow" htmlFor={props.task.id}>
         {props.task.label}
-        {props.task.value ? "Done" : "Pending"}
       </label>
       <button
-        className="bg-black rounded-md text-white font-semibold text-xs px-4 py-2 mr-4"
+        className="text-white font-semibold text-xs px-2 mr-4"
         onClick={() => props.onEdit(props.task)}
       >
-        <Pencil1Icon />
+        <Pencil1Icon color="black" />
       </button>
-      <button onClick={() => props.onDelete(props.task)}>
-        <TrashIcon />
+      <button
+        className="font-semibold text-xs px-2  mr-4"
+        onClick={() => props.onDelete(props.task)}
+      >
+        <TrashIcon color="black" />
       </button>
     </div>
   );

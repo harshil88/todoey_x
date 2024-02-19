@@ -45,6 +45,9 @@ function App() {
     setTasks(updatedTasks);
   }
 
+  const selectedButtonStyle =
+    "bg-white rounded-md font-semibold text-xs text-black";
+
   return (
     <>
       <h1
@@ -54,23 +57,47 @@ function App() {
         TODOEY
       </h1>
       <AddTaskComponent handleTaskAdd={addTask} />
-      <button onClick={() => setFilterId(0)}>ALL </button>
-      <button onClick={() => setFilterId(1)}>Done </button>
-      <button onClick={() => setFilterId(2)}>Pendind </button>
-
-      {filteredTasks(filterId).map((task) => (
-        <TaskListComponent
-          taskUpdated={(task) => handleTaskChange(task)}
-          onDelete={(task) => handleDeleteTask(task)}
-          onEdit={(task) => {
-            handleTaskChange(task);
-          }}
-          task={task}
-          onClick={(value) => {
-            handleTaskChange(value);
-          }}
-        />
-      ))}
+      <div className="mx-5 bg-gray-100 w-fit rounded-md p-2 font-semibold text-xs text-gray-500">
+        <button
+          className={`px-2 py-1 mx-2 ${
+            filterId === 0 ? selectedButtonStyle : undefined
+          }`}
+          onClick={() => setFilterId(0)}
+        >
+          All
+        </button>
+        <button
+          className={`px-2 py-1 mx-2 ${
+            filterId === 1 ? selectedButtonStyle : undefined
+          }`}
+          onClick={() => setFilterId(1)}
+        >
+          Completed
+        </button>
+        <button
+          className={`px-2 py-1 mx-2 ${
+            filterId === 2 ? selectedButtonStyle : undefined
+          }`}
+          onClick={() => setFilterId(2)}
+        >
+          Pending
+        </button>
+      </div>
+      <div>
+        {filteredTasks(filterId).map((task) => (
+          <TaskListComponent
+            taskUpdated={(task) => handleTaskChange(task)}
+            onDelete={(task) => handleDeleteTask(task)}
+            onEdit={(task) => {
+              handleTaskChange(task);
+            }}
+            task={task}
+            onClick={(value) => {
+              handleTaskChange(value);
+            }}
+          />
+        ))}
+      </div>
     </>
   );
 }
